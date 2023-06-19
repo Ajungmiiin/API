@@ -1,15 +1,12 @@
-import './App.css';
-import Weather from './components/Weather';
-
-function Layout() {
+import { useState, useEffect } from 'react'
+import Header from './components/Header'
+import Map from './components/Map'
+import Data from './components/Data'
+export default function App() {
   return (
     <>
-    <header>
-      <Weather />
-    </header>
+      <Header />
+      <Map />
     </>
-
   )
 }
-
-export default Layout;
