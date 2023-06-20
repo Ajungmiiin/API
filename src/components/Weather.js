@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 export default Weather;
 
 function Weather () { // 날씨 api 를 사용한 컴포넌트
-
   useEffect(() => { // 웹에 접속하면 사용자의 geolocation 정보를 알아낸다. 
     // handleGeoSucc -> 위치 정보 불러오기 성공, handleGeoErr -> 위치 정보 불러오기 실패
     navigator.geolocation.getCurrentPosition(handleGeoSucc, handleGeoErr);
@@ -18,20 +17,12 @@ function Weather () { // 날씨 api 를 사용한 컴포넌트
   function handleGeoSucc(position) {
     const latitude = position.coords.latitude // 경도
     const longitude = position.coords.longitude // 위도
-    const coordsObj = {
-      latitude,
-      longitude
-    }
-    saveCoords(coordsObj); // 현재 위도와 경도의 객체 데이터를 coords state에 저장
     getWeather(latitude, longitude); // getWeather 함수의 인수로 위도와 경도 값을 전달
   }
 
   // 사용자의 Geolocation 정보를 알아오지 못했을 때 실행되는 함수
   function handleGeoErr (error) {
     console.log('not finde your location')
-  }
-
-  function requestCoords() {
   }
 
   // 받아온 위도와 경도 값을 이용해 API 를 사용하여 현재 날씨 정보를 가져오는 함수
@@ -67,7 +58,7 @@ function Weather () { // 날씨 api 를 사용한 컴포넌트
       }
     }
     return (
-      <div className='w-64 flex justify-center items-center pr-6 absolute right-40 h-24'>
+      <div className='w-64 flex justify-center items-center pr-6 absolute left-0 h-24 lg:left-28'>
         <img src={weatherIcon()} alt="" />
           <strong className='text-xl'>
             {name}
